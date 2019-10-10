@@ -1,0 +1,44 @@
+# Minion game problem from https://www.hackerrank.com/challenges/the-minion-game/problem
+
+string = str(input("What word are we playing with? "))
+
+if 0 < len(string) <= 10**6:
+  string = string.upper()
+  players = {"Vowels":"Kevin","Consonants":"Stuart"}
+  corpus = [] # Initialise empty list for all substrings
+
+  corpus.extend(list(string)) # len 1 substrings
+
+  for sub in range(2,len(string)): #len 2 to (n-1) substrings
+    for pos in range(len(string[:(-1*sub)+1])):
+      corpus.append(string[pos:pos+sub])
+
+  corpus.append(string) # Len n substring
+
+  frequencies = dict()
+
+  for word in list(set(corpus)):
+    frequencies[word] = 0
+
+  for word in corpus:
+    frequencies[word] += 1
+
+  vowel_counts = {key:frequencies[key] for key in frequencies.keys() if key[0] in list('AEIOUaeiou')}
+  consonant_counts = {key:frequencies[key] for key in frequencies.keys() if key[0] not in list('AEIOUaeiou')}
+
+  vowel_total = sum(vowel_counts.values())
+  consonant_total = sum(consonant_counts.values())
+
+  if vowel_total > consonant_total:
+    winner = players["Vowels"]
+    result = "{} {}".format(winner,vowel_total)
+    return print(result) 
+  if vowel_total < consonant_total:
+    winner = players["Consonants"]
+    result = "{} {}".format(winner,consonant_total)
+    return print(result)
+  elif vowel_total == consonant_total:
+    result = "Draw"
+    return print(result)
+else:
+  return print("input error")
