@@ -1,0 +1,18 @@
+def merge_the_tools(s,k):
+    if (k <= len(s)) and (len(s) % k == 0):
+        n_over_k_substrings = []
+        processed_substrings = []
+
+        for i in range(int(len(s)/k)):
+            n_over_k_substrings.append(s[k*i:(k*i)+k])
+
+        for substring in n_over_k_substrings:
+            processed_substrings.append("".join(list(dict.fromkeys(substring))))
+
+#         for substring in processed_substrings:
+#             print(substring)
+
+        return processed_substrings
+    else:
+        while not ((k <= len(s)) and (len(s) % k == 0)):
+            k = int(input("Pick a number that is a factor of the length of your string: "))
