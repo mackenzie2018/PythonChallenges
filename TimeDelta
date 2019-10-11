@@ -1,0 +1,10 @@
+from datetime import datetime as dt
+
+dates = ["Sat 02 May 2015 19:54:36 +0530",
+         "Fri 01 May 2015 13:54:36 -0000"]
+
+stamps = [dt.timestamp(dt.strptime(date, "%a %d %b %Y %H:%M:%S %z")) for date in dates]
+
+delta = abs(stamps[0] - stamps[1])
+
+print(delta)
