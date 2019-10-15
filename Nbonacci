@@ -1,0 +1,13 @@
+# Return the kth term of the N-bonacci sequence
+
+def Nbonacci(N,k):
+    if N<=0:
+        return "Invalid"
+    elif N==1:
+        return 1
+    else:
+        seed = (N-1)*[0]
+        seed.append(1)
+        for i in range(n,k):
+            seed.append(sum(seed[-n:]))
+        return seed[-1]
