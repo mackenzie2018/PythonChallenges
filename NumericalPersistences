@@ -1,0 +1,26 @@
+import numpy as np
+
+def plus_persistence(number):
+    persistence_count = 0
+    if number < 10:
+        return persistence_count
+    else:
+        while number >= 10:
+            number = sum([int(digit) for digit in list(str(number))])
+            persistence_count += 1
+        return persistence_count
+        
+def cross_persistence(number):
+    persistence_count = 0
+    if number < 10:
+        return persistence_count
+    else:
+        while number >= 10:
+            split = [int(digit) for digit in list(str(number))]
+            cum = 1
+            for digit in split:
+                cum *= digit
+            number = cum
+#             print(number)
+            persistence_count += 1
+        return persistence_count
