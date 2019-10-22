@@ -8,6 +8,6 @@ def Nbonacci(N,k):
     else:
         seed = (N-1)*[0]
         seed.append(1)
-        for i in range(n,k):
-            seed.append(sum(seed[-n:]))
+        for i in range(N,k):
+            seed.append(sum(seed[-N:]))
         return seed[-1]
